@@ -12,8 +12,8 @@ const ManagerDetail = ({dispatch}) => {
   const fetchManager = async () => {
     const [data, error] = await requestAxios(getManagerList());
     if (data) {
-      const _newArray = await Object.values(data);
-      await setManagerArray([..._newArray]);
+      console.log(data);
+      await setManagerArray([...data]);
     }
     if (error) {
       console.log(error);
@@ -73,7 +73,7 @@ const ManagerDetail = ({dispatch}) => {
         <div className="flex flex-col items-start space-y-4 p-4">
           {managerArray.map((ele) => {
             return (
-              <Tag name={ele.name} id={ele.name} onClick={onclickHandler} />
+              <Tag name={ele.name} key={ele.name} onClick={onclickHandler} />
             );
           })}
         </div>

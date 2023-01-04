@@ -2,14 +2,14 @@ import axios from "axios";
 
 export const axiosInstance = axios.create({
   baseURL:
-    "https://wanted-wemade-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "http://test.com",
   headers: {
     "Content-Type": "application/json",
   },
 });
 
 export const PATH = {
-  MANAGER: "/manager.json",
+  MANAGER: "/manager",
 };
 
 export async function requestAxios(asyncFn) {
