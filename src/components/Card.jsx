@@ -1,13 +1,19 @@
+import React from "react";
+import { useDetailDispatch } from "../hooks/useDetail";
 import Tag from "./Tag";
 
 const Card = ({title, time, managers, id}) => {
+  const dispatch = useDetailDispatch();
+  const date = new Date(time).toLocaleString('ko-KR');
 
   return (
       <article
-      onClick={()=>{}}
+      onClick={()=>{
+        dispatch({type:"ON", payload:id});
+      }}
       className="w-full border border-gray-200 rounded-lg bg-white p-4 shadow-l hover:shadow-xl">
         <time dateTime={time} className="block text-xs text-gray-500">
-          {time}
+          {`${date}`}
         </time>
         <a href="#">
           <h3 className="mt-0.5 text-lg font-medium text-gray-900">
@@ -15,7 +21,7 @@ const Card = ({title, time, managers, id}) => {
           </h3>
         </a>
         <div className="mt-2 flex flex-wrap gap-1">
-          {managers.map((ele)=>{
+          {managers?.map((ele)=>{
             return <Tag name={ele.name} key={ele.name} />
           })}
         </div>
@@ -23,4 +29,4 @@ const Card = ({title, time, managers, id}) => {
   );
 };
 
-export default Card;
+export default React.memo(Card);

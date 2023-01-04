@@ -2,9 +2,12 @@ import { BackDrop } from "../modal/BackDrop";
 import IssueForm from "../issue/IssueForm";
 import useToggle from "../../hooks/useToggle";
 import Button from "../common/Button";
+import { useDetailDispatch, useDetailState } from "../../hooks/useDetail";
 
 const Header = () => {
   const { state: modal, on: onModal, off: offModal } = useToggle();
+  const popupState = useDetailState();
+  const dispatch = useDetailDispatch();
 
   return (
     <>
@@ -15,11 +18,11 @@ const Header = () => {
               <span className="bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text text-2xl font-extrabold text-transparent">
                 Wanted
               </span>
-              <span className="text-2xl font-bold text-gray-900">
+              <span className="text-2xl font-bold text-gray-900 invisible md:visible">
                 Wemade Issue Tracking
               </span>
             </div>
-            <Button onClick={onModal}/>
+            <Button onClick={onModal} title="Create Issue"/>
           </div>
         </div>
       </header>
@@ -28,6 +31,13 @@ const Header = () => {
           <IssueForm />
         </BackDrop>
       ) : null}
+      {
+        popupState.popup ? (
+          <BackDrop offModal={()=>{dispatch({type: "OFF"});}}>
+          <IssueForm />
+        </BackDrop>
+        ) : null
+      }
     </>
   );
 };

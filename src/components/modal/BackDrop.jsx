@@ -9,7 +9,7 @@ export const BackDrop = ({ children, offModal }) => {
   return (
     <ModalPortal>
       <div
-        className="absolute top-0 w-screen h-screen 
+        className="absolute top-0 w-screen h-full overflow-y-hidden
         flex justify-center items-center bg-gray-700 bg-opacity-75"
         onClick={offModal}
       >

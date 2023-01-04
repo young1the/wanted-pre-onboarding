@@ -12,7 +12,7 @@ const manager = [
 const issues = [
   {
     title: "테스트",
-    time: new Date(),
+    time: "2022-12-24",
     content: "테스트입니다.",
     managers: manager,
     status: "proress",
@@ -20,7 +20,7 @@ const issues = [
   },
     {
     title: "테스트",
-    time: new Date(),
+    time: "2022-12-24",
     content: "테스트입니다.",
     managers: manager,
     status: "proress",

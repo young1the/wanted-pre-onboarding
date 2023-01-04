@@ -1,15 +1,15 @@
 import React from "react";
 
-const Button = ({onClick}) => {
+const Button = ({title, onClick}) => {
   return (
     <button
       type="submit"
-      className="inline-flex w-full
+      className="block w-auto
 	items-center justify-center rounded-lg
-	bg-indigo-600 px-5 py-3 text-white sm:w-auto"
+	bg-indigo-600 px-5 py-3 text-white"
 	onClick={onClick}
     >
-      Create Issue
+      {title}
     </button>
   );
 };

@@ -1,19 +1,19 @@
-import { useQuery } from "react-query";
-import { getIssue } from "../apis/asyncFns";
+import { isError, useQuery } from "react-query";
+import { getIssues } from "../apis/asyncFns";
 import Card from "./Card";
 import Loader from "./common/Loader";
 
 const CardContainer = () => {
-  const { isLoading, error, data } = useQuery("repoData", getIssue, {
+  const { isLoading, error, data } = useQuery("issues", getIssues, {
     onSuccess: () => {
-      console.log(data);
     },
   });
   if (isLoading) return <Loader/>;
+  if (error) return <p>Error!</p>
 
   return (
     <>
-      {data.length !== 0 ? (
+      {data?.length !== 0 ? (
         data.map((ele) => {
           return (
             <Card

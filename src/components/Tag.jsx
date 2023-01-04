@@ -15,11 +15,12 @@ const COLORS = [
 ];
 
 const Tag = ({ name, onClick }) => {
+  const colorIdx = name? name.charCodeAt(0) % (COLORS.length - 1) : 0;
   return (
     <span
       onClick={onClick}
       className={`cursor-pointer inline-block whitespace-nowrap rounded-full px-2.5 py-0.5 text-xs
-    ${COLORS[name.charCodeAt(0) % (COLORS.length - 1)]}`}
+    ${COLORS[colorIdx]}`}
     >
       {name}
     </span>

@@ -1,8 +1,3 @@
-import { useEffect, useState } from "react";
-import Card from "./Card";
-import { requestAxios } from "../apis/axios";
-import { getIssue } from "../apis/asyncFns";
-import { useQuery } from "react-query";
 import CardContainer from "./CardContainer";
 
 const Section = ({ title }) => {
