@@ -15,8 +15,17 @@ const issues = [
     time: new Date(),
     content: "테스트입니다.",
     managers: manager,
-    status: "progress"
-  }
+    status: "proress",
+    id:"testid",
+  },
+    {
+    title: "테스트",
+    time: new Date(),
+    content: "테스트입니다.",
+    managers: manager,
+    status: "proress",
+    id:"testid2",
+  },
 ]
 
 export const handlers = [

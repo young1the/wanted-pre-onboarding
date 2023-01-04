@@ -14,7 +14,8 @@ const IssueForm = () => {
   const {value: content, onChange: onChangeContent} = useInput("");
   const [managers, setManagers] = useState([]);
 
-  const onClickSubmitHandler = async () => {
+  const onClickSubmitHandler = async (e) => {
+    e.preventDefault();
     const _managers = managers.map((ele)=>{return {name: ele}});
     const [data, error] = await requestAxios(createIssue({title, time, content, _managers}));
     if (data) {

@@ -1,22 +1,23 @@
 import Tag from "./Tag";
 
-const Card = () => {
+const Card = ({title, time, managers, id}) => {
 
   return (
-      <article 
-      onClick={()=>{setClicked(true)}}
+      <article
+      onClick={()=>{}}
       className="w-full border border-gray-200 rounded-lg bg-white p-4 shadow-l hover:shadow-xl">
-        <time dateTime="2022-10-10" className="block text-xs text-gray-500">
-          10th Oct 2022
+        <time dateTime={time} className="block text-xs text-gray-500">
+          {time}
         </time>
         <a href="#">
           <h3 className="mt-0.5 text-lg font-medium text-gray-900">
-            How to center an element using JavaScript and jQuery
+            {title}
           </h3>
         </a>
         <div className="mt-2 flex flex-wrap gap-1">
-          <Tag name={"할일"}/>
-          <Tag name={"진행중"}/>
+          {managers.map((ele)=>{
+            return <Tag name={ele.name} key={ele.name} />
+          })}
         </div>
       </article>
   );
