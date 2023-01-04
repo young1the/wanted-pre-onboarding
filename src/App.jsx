@@ -1,34 +1,21 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import Header from "./components/layout/Header";
+import Section from "./components/Section";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <>
+      <Header />
+      <div className="w-screen h-screen flex justify-center items-center bg-sky-200">
+        <div className="m-5 w-full grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <Section title="할 일"/>
+          <Section title="진행중"/>
+          <Section title="완료"/>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+    </>
+  );
 }
 
-export default App
+export default App;
+
+//https://www.hyperui.dev/components/marketing/blog-cards
