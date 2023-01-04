@@ -1,5 +1,5 @@
 import React from "react";
-import ManagerDetail from "./ManagerDetail";
+import ManagerDetail from "./issue/ManagerDetail";
 
 const IssueDetail = () => {
   return (
