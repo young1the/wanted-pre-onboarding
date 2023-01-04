@@ -17,6 +17,6 @@ export const createIssue = async ({ title, time, content, managers }) => {
 };
 
 export const getIssue = async () => {
-  const response = await axiosInstance.get(PATH.ISSUE, {});
-  return response.data;
+  const {data} = await axiosInstance.get(PATH.ISSUE, {});
+  return data;
 };
