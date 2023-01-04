@@ -6,7 +6,7 @@ import IssueContent from "../issue/IssueContent";
 import useInput from "../../hooks/useInput";
 import { useQueryClient } from "react-query";
 import useToggle from "../../hooks/useToggle";
-import { deleteIssue } from "../../apis/asyncFns";
+import { deleteIssue, updateIssue } from "../../apis/asyncFns";
 import { useDetailDispatch } from "../../hooks/useDetail";
 import { useMutation } from "react-query";
 
@@ -15,15 +15,35 @@ const DetailForm = ({ props }) => {
   const { value: time, onChange: onChangeTime } = useInput(props.time);
   const { value: content, onChange: onChangeContent } = useInput(props.content);
   const [managers, setManagers] = useState(props.managers);
-  const {state: mode, on, off} = useToggle();
+  const { state: mode, on, off } = useToggle();
   const queryClient = useQueryClient();
   const dispatch = useDetailDispatch();
-  const { mutate, isLoading, isError, error, isSuccess } = useMutation(
-    ()=>{return deleteIssue(props.id)},
+  const { mutate } = useMutation(
+    () => {
+      return deleteIssue(props.id);
+    },
     {
       onSuccess: () => {
         queryClient.invalidateQueries("issues");
-        dispatch({type: "OFF"});
+        dispatch({ type: "OFF" });
+      },
+    }
+  );
+  const { mutate:mutateUpdate } = useMutation(
+    () => {
+      return updateIssue(props.id, {
+        title,
+        time,
+        content,
+        managers,
+        id: props.id,
+        status: props.status,
+      });
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries("issues");
+        dispatch({ type: "OFF" });
       },
     }
   );
@@ -33,22 +53,18 @@ const DetailForm = ({ props }) => {
       <div className="w-full h-full flex justify-end space-x-4 mb-4">
         {!mode ? (
           <>
-            <button onClick={on}>
-              🛠️
-            </button>
+            <button onClick={on}>🛠️</button>
             <button onClick={mutate}>🗑️</button>
           </>
         ) : (
           <>
+            <button onClick={mutateUpdate}>✅</button>
             <button
               onClick={() => {
+                off();
                 queryClient.invalidateQueries("issue");
               }}
             >
-              ✅
-            </button>
-            <button
-              onClick={()=>{off(); queryClient.invalidateQueries("issue");}}>
               🔙
             </button>
           </>

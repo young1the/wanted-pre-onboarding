@@ -49,10 +49,22 @@ export const handlers = [
     const _id = req.params.id;
     const _prevLen = issues.length;
     issues = issues.filter((ele) => {
-      ele.id !== _id;
+      return ele.id !== _id;
     });
     if (_prevLen !== issues.length) {
       return res(ctx.status(200));
+    }
+    return res(ctx.status(404));
+  }),
+  rest.put("http://test.com/issue/:id", (req, res, ctx) => {
+    const _id = req.params.id;
+    const _prevLen = issues.length;
+    issues = issues.filter((ele) => {
+      return ele.id !== _id;
+    });
+    if (_prevLen !== issues.length) {
+      issues.push(req.body);
+      return res(ctx.status(200), ctx.json(issues));
     }
     return res(ctx.status(404));
   }),

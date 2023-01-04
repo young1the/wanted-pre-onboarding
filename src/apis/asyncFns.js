@@ -30,3 +30,15 @@ export const deleteIssue = async (id) => {
   const {data} = await axiosInstance.delete(PATH.ISSUE + id, {});
   return data;
 }
+
+export const updateIssue = async (id, { title, time, content, managers,status }) => {
+  const {data} = await axiosInstance.put(PATH.ISSUE + id, {
+    title,
+    time,
+    content,
+    managers,
+    id,
+    status,
+  });
+  return data;
+}
