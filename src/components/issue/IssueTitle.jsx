@@ -1,16 +1,22 @@
 import React from "react";
 
-const IssueTitle = ({value, onChange}) => {
+const IssueTitle = ({ value, onChange, readOnly = false }) => {
   return (
     <input
-      className="w-full rounded-lg border border-gray-200 p-3 text-sm"
+      className={`w-full rounded-lg border border-gray-200 p-3 text-sm 
+      ${ readOnly ? "cursor-pointer focus:outline-none" : ""}`}
       placeholder="Title"
       type="text"
       id="title"
-	  value={value}
-	  onChange={onChange}
+      value={value}
+      onChange={onChange}
+      readOnly={readOnly}
     />
   );
 };
 
-export default React.memo(IssueTitle);
+function compare(prev, next) {
+  return prev.value === next.value && prev.readOnly === next.readOnly;
+}
+
+export default IssueTitle;

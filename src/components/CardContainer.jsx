@@ -1,4 +1,4 @@
-import { isError, useQuery } from "react-query";
+import { useQuery } from "react-query";
 import { getIssues } from "../apis/asyncFns";
 import Card from "./Card";
 import Loader from "./common/Loader";

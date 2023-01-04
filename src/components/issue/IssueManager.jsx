@@ -6,14 +6,14 @@ import useToggle from "../../hooks/useToggle";
 import Tag from "../Tag";
 import IssueManagerDetail from "./IssueManagerDetail";
 
-const IssueManager = ({managers, setManagers}) => {
+const IssueManager = ({managers, setManagers, readOnly=false}) => {
   const { state: detail, toggle} = useToggle();
-
+  const onClick = !readOnly ? toggle : undefined;
   return (
     <div className="overflow-hidden w-full rounded-lg border border-gray-200">
       <div className="w-full h-full flex items-center text-gray-400 transition cursor-pointer p-3"
-            onClick={toggle}>
-        {managers.length !== 0 ? (
+            onClick={onClick}>
+        {managers && managers.length !== 0 ? (
           managers.map((ele) => {
             return <Tag name={ele.name} key={ele.name} onClick={(e)=>{e.stopPropagation();}} />;
           })

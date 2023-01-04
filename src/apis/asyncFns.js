@@ -20,3 +20,13 @@ export const getIssues = async () => {
   const {data} = await axiosInstance.get(PATH.ISSUE, {});
   return data;
 };
+
+export const getIssueById = async (id) => {
+  const {data} = await axiosInstance.get(PATH.ISSUE + id, {});
+  return data;
+}
+
+export const deleteIssue = async (id) => {
+  const {data} = await axiosInstance.delete(PATH.ISSUE + id, {});
+  return data;
+}

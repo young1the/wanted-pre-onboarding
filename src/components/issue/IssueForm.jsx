@@ -5,36 +5,50 @@ import IssueTime from "./IssueTime";
 import IssueContent from "./IssueContent";
 import Button from "../common/Button";
 import useInput from "../../hooks/useInput";
-import { requestAxios } from "../../apis/axios";
 import { createIssue } from "../../apis/asyncFns";
 import { useMutation, useQueryClient } from "react-query";
+import Loader from "../common/Loader";
 
 const IssueForm = () => {
-  const {value: title, onChange: onChangeTitle} = useInput("");
-  const {value: time, onChange: onChangeTime} = useInput("");
-  const {value: content, onChange: onChangeContent} = useInput("");
+  const { value: title, onChange: onChangeTitle } = useInput("");
+  const { value: time, onChange: onChangeTime } = useInput("");
+  const { value: content, onChange: onChangeContent } = useInput("");
   const [managers, setManagers] = useState([]);
   const queryClient = useQueryClient();
-  const { mutate, isLoading, isError, error, isSuccess } = useMutation(createIssue, {
-    onSuccess: ()=>{queryClient.invalidateQueries('issues');}
-  });
+  const { mutate, isLoading, isError, error, isSuccess } = useMutation(
+    createIssue,
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries("issues");
+      },
+    }
+  );
 
   const onClickSubmitHandler = async (e) => {
     e.preventDefault();
-    mutate({title, time, content, managers});
-  }
+    const _ok = title && time && content && managers.length > 0;
+    if (_ok) {
+      mutate({ title, time, content, managers });
+    } else {
+      alert("모든 칸을 채워주세요!");
+    }
+  };
 
   return (
     <div className="w-[30rem] p-4 rounded-lg bg-white p-8 shadow-lg">
-      <form action="" className="space-y-4">
-          <IssueTitle value={title} onChange={onChangeTitle}/>
-          <IssueManager managers={managers} setManagers={setManagers}/>
+      {!isLoading ? (
+        <form action="" className="space-y-4">
+          <IssueTitle value={title} onChange={onChangeTitle} />
+          <IssueManager managers={managers} setManagers={setManagers} />
           <IssueTime value={time} onChange={onChangeTime} />
           <IssueContent value={content} onChange={onChangeContent} />
-        <div className="mt-4 flex justify-end ">
-          <Button onClick={onClickSubmitHandler} title="Submit"/>
-        </div>
-      </form>
+          <div className="mt-4 flex justify-end ">
+            <Button onClick={onClickSubmitHandler} title="Submit" />
+          </div>
+        </form>
+      ) : (
+        <Loader />
+      )}
     </div>
   );
 };

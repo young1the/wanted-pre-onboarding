@@ -10,7 +10,8 @@ const IssueManagerDetail = ({ managers, setManagers }) => {
   const [managerList, setManagerList] = useState([]);
   const { isLoading, error, data } = useQuery("managers", getManagerList, {
     onSuccess: () => {
-      setManagerList([...data]);
+      if (data)
+        setManagerList([...data]);
     },
   });
   if (isLoading) return <Loader />;

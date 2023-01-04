@@ -3,6 +3,7 @@ import IssueForm from "../issue/IssueForm";
 import useToggle from "../../hooks/useToggle";
 import Button from "../common/Button";
 import { useDetailDispatch, useDetailState } from "../../hooks/useDetail";
+import DetailFormWrapper from "../detail/DetailFormWrapper";
 
 const Header = () => {
   const { state: modal, on: onModal, off: offModal } = useToggle();
@@ -34,7 +35,7 @@ const Header = () => {
       {
         popupState.popup ? (
           <BackDrop offModal={()=>{dispatch({type: "OFF"});}}>
-          <IssueForm />
+          <DetailFormWrapper />
         </BackDrop>
         ) : null
       }
