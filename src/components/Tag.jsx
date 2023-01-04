@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 
 const COLORS = [
   "bg-slate-100 text-slate-600",
@@ -8,6 +8,10 @@ const COLORS = [
   "bg-pink-100 text-pink-600",
   "bg-lime-100 text-lime-600",
   "bg-orange-100 text-orange-600",
+  "bg-amber-100 text-amber-600",
+  "bg-emerald-100 text-emerald-600",
+  "bg-indigo-100 text-indigo-600",
+  "bg-fuchsia-100 text-fuchsia-600",
 ];
 
 const Tag = ({ name, onClick }) => {

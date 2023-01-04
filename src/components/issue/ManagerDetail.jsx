@@ -19,6 +19,9 @@ const ManagerDetail = ({managers, setManagers}) => {
       console.log(error);
     }
   };
+  useEffect(() => {
+    fetchManager();
+  }, []);
 
   const searchManager = async () => {
     setAllManagerList((prev) =>
@@ -27,10 +30,6 @@ const ManagerDetail = ({managers, setManagers}) => {
       })
     );
   };
-
-  useEffect(() => {
-    fetchManager();
-  }, []);
 
   const onClickAddHandler = (e) => {
     const _target = e.target.innerHTML;
