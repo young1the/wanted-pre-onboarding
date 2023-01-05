@@ -1,6 +1,6 @@
 import React from "react";
 import { useDetailDispatch } from "../hooks/useDetail";
-import Tag from "./Tag";
+import Tag from "./common/Tag";
 
 const Card = ({title, time, managers, id, status}) => {
   const dispatch = useDetailDispatch();

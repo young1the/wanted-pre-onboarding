@@ -3,6 +3,9 @@ import { createContext, useReducer } from "react";
 const INITIAL_STATE = {
     popup: false,
     issueStat: undefined,
+    // {
+    //     id, status
+    // }
 }
 
 export const DetailStateContext = createContext(INITIAL_STATE);

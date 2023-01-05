@@ -10,7 +10,7 @@ import { createIssue } from "../../apis/asyncFns";
 import { useMutation, useQueryClient } from "react-query";
 import Loader from "../common/Loader";
 
-const IssueForm = () => {
+const IssueForm = ({offModal}) => {
   const { value: title, onChange: onChangeTitle } = useInput("");
   const { value: time, onChange: onChangeTime } = useInput("");
   const { value: content, onChange: onChangeContent } = useInput("");
@@ -31,6 +31,7 @@ const IssueForm = () => {
     const _ok = title && time && content && managers.length > 0;
     if (_ok) {
       mutate({ title, time, content, managers, status });
+      offModal();
     } else {
       alert("모든 칸을 채워주세요!");
     }

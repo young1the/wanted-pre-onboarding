@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 import { getManagerList } from "../../apis/asyncFns";
 import useInput from "../../hooks/useInput";
 import Loader from "../common/Loader";
-import Tag from "../Tag";
+import Tag from "../common/Tag";
 
 const IssueManagerDetail = ({ managers, setManagers }) => {
   const { value, onChange } = useInput("");

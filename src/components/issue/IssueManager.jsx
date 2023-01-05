@@ -3,7 +3,7 @@ import { getManagerList } from "../../apis/asyncFns";
 import { requestAxios } from "../../apis/axios";
 import useInput from "../../hooks/useInput";
 import useToggle from "../../hooks/useToggle";
-import Tag from "../Tag";
+import Tag from "../common/Tag";
 import IssueManagerDetail from "./IssueManagerDetail";
 
 const IssueManager = ({managers, setManagers, readOnly=false}) => {
