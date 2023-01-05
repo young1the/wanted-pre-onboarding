@@ -27,8 +27,8 @@ const Tag = ({ name, onClick }) => {
   );
 };
 
-function compare(prev, next) {
-  return prev.name === next.name;
-}
+// function compare(prev, next) {
+//   return prev.name === next.name && prev.onClick === next.onClick;
+// }
 
-export default React.memo(Tag, compare);
+export default Tag;
