@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { DetailStateContext, DispatchContext } from "../store/cardDetailContext"
+import { DetailStateContext, DispatchContext } from "../store/DetailContext"
 
 export function useDetailState () {
     const state = useContext(DetailStateContext);

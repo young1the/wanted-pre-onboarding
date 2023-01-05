@@ -31,7 +31,7 @@ const Header = () => {
       </header>
       {modal ? (
         <BackDrop offModal={offModal}>
-          <IssueForm />
+          <IssueForm offModal={offModal}/>
         </BackDrop>
       ) : null}
       {

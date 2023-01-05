@@ -43,3 +43,13 @@ export const updateIssue = async (prevStatus, { title, time, content, managers, 
   });
   return data;
 }
+
+// {id, status}
+export const updateIssueOrder = async ({prev, next}) => {
+  console.log(`gogogo ${prev.id},${next.id}`);
+  const {data} = await axiosInstance.put(PATH.ISSUE + prev.id, {
+    prev,
+    next,
+  });
+  return data;
+}
