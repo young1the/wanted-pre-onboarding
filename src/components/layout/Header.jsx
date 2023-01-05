@@ -4,8 +4,10 @@ import useToggle from "../../hooks/useToggle";
 import Button from "../common/Button";
 import { useDetailDispatch, useDetailState } from "../../hooks/useDetail";
 import DetailFormWrapper from "../detail/DetailFormWrapper";
+import { useQueryClient } from "react-query";
 
 const Header = () => {
+  const queryClient = useQueryClient();
   const { state: modal, on: onModal, off: offModal } = useToggle();
   const popupState = useDetailState();
   const dispatch = useDetailDispatch();
@@ -34,7 +36,9 @@ const Header = () => {
       ) : null}
       {
         popupState.popup ? (
-          <BackDrop offModal={()=>{dispatch({type: "OFF"});}}>
+          <BackDrop offModal={()=>{
+            queryClient.invalidateQueries('datail');
+            dispatch({type: "OFF"});}}>
           <DetailFormWrapper />
         </BackDrop>
         ) : null

@@ -2,7 +2,7 @@ import { createContext, useReducer } from "react";
 
 const INITIAL_STATE = {
     popup: false,
-    id: "",
+    issueStat: undefined,
 }
 
 export const DetailStateContext = createContext(INITIAL_STATE);
@@ -11,10 +11,10 @@ export const DispatchContext = createContext(null);
 const reducer = (state, action) => {
     switch (action.type) {
         case "ON": {
-            return ({popup: true, id: action.payload});
+            return ({popup: true, issueStat:{...action.payload}});
         }
         case "OFF": {
-            return ({popup: false, id: ""});
+            return ({popup: false, issueStat: undefined});
         }
         default:
             return state;

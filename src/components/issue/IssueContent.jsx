@@ -14,4 +14,4 @@ const IssueContent = ({value, onChange, readOnly=false}) => {
   );
 };
 
-export default React.memo(IssueContent);
+export default IssueContent;

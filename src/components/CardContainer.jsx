@@ -3,8 +3,9 @@ import { getIssues } from "../apis/asyncFns";
 import Card from "./Card";
 import Loader from "./common/Loader";
 
-const CardContainer = () => {
-  const { isLoading, error, data } = useQuery("issues", getIssues, {
+const CardContainer = ({type}) => {
+  const { isLoading, error, data } = useQuery(type, ()=>{
+    return getIssues(type)}, {
     onSuccess: () => {
     },
   });
@@ -13,8 +14,9 @@ const CardContainer = () => {
 
   return (
     <>
-      {data?.length !== 0 ? (
-        data.map((ele) => {
+      {
+      data?.length !== 0 ? (
+        data.map && data.map((ele) => {
           return (
             <Card
               title={ele.title}
@@ -22,6 +24,7 @@ const CardContainer = () => {
               managers={ele.managers}
               id={ele.id}
               key={ele.id}
+              status={ele.status}
             />
           );
         })

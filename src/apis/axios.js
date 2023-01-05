@@ -11,6 +11,9 @@ export const axiosInstance = axios.create({
 export const PATH = {
   MANAGER: "/manager",
   ISSUE: "/issue/",
+  TODO: "/todo/",
+  PROGRESS: "/progress/",
+  COMPLETE: "/complete/",
 };
 
 export async function requestAxios(asyncFn) {

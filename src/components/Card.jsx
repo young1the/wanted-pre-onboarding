@@ -2,14 +2,14 @@ import React from "react";
 import { useDetailDispatch } from "../hooks/useDetail";
 import Tag from "./Tag";
 
-const Card = ({title, time, managers, id}) => {
+const Card = ({title, time, managers, id, status}) => {
   const dispatch = useDetailDispatch();
   const date = new Date(time).toLocaleString('ko-KR');
 
   return (
       <article
       onClick={()=>{
-        dispatch({type:"ON", payload:id});
+        dispatch({type:"ON", payload:{id, status}});
       }}
       className="w-full border border-gray-200 rounded-lg bg-white p-4 shadow-l hover:shadow-xl">
         <time dateTime={time} className="block text-xs text-gray-500">
@@ -29,4 +29,4 @@ const Card = ({title, time, managers, id}) => {
   );
 };
 
-export default React.memo(Card);
+export default Card;

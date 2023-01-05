@@ -5,12 +5,14 @@ import Loader from "../common/Loader";
 import DetailForm from "./detailForm";
 
 const DetailFormWrapper = () => {
-  const detailState = useDetailState();
+  const {issueStat} = useDetailState();
   const { isLoading, error, data } = useQuery(
-    "issue",
-    () => { return getIssueById(detailState.id);},
+    "detail",
+    () => { return getIssueById({status:issueStat.status, id:issueStat.id});},
     {
-      onSuccess: () => {},
+      onSuccess: () => {
+        console.log(data);
+      },
     }
   );
   if (isLoading) {
@@ -18,6 +20,7 @@ const DetailFormWrapper = () => {
   }
   if (error) return <p>Error!</p>;
   return <DetailForm props={data}/>;
+  // return <></>
 };
 
 export default DetailFormWrapper;

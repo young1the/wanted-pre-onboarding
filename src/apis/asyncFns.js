@@ -5,34 +5,35 @@ export const getManagerList = async () => {
   return response.data;
 };
 
-export const createIssue = async ({ title, time, content, managers }) => {
-  const response = await axiosInstance.post(PATH.ISSUE, {
+export const createIssue = async ({ title, time, content, managers, status }) => {
+  const response = await axiosInstance.post(PATH[status], {
     title,
     time,
     content,
     managers,
-    status: "todo",
+    status,
   });
   return response.data;
 };
 
-export const getIssues = async () => {
-  const {data} = await axiosInstance.get(PATH.ISSUE, {});
+export const getIssues = async (type) => {
+  const {data} = await axiosInstance.get(PATH[type], {});
   return data;
 };
 
-export const getIssueById = async (id) => {
-  const {data} = await axiosInstance.get(PATH.ISSUE + id, {});
+export const getIssueById = async ({status, id}) => {
+  const {data} = await axiosInstance.get(PATH[status] + id, {});
   return data;
 }
 
-export const deleteIssue = async (id) => {
-  const {data} = await axiosInstance.delete(PATH.ISSUE + id, {});
+export const deleteIssue = async ({status, id}) => {
+  console.log(status, id);
+  const {data} = await axiosInstance.delete(PATH[status] + id, {});
   return data;
 }
 
-export const updateIssue = async (id, { title, time, content, managers,status }) => {
-  const {data} = await axiosInstance.put(PATH.ISSUE + id, {
+export const updateIssue = async (prevStatus, { title, time, content, managers, status, id }) => {
+  const {data} = await axiosInstance.put(PATH[prevStatus] + id, {
     title,
     time,
     content,

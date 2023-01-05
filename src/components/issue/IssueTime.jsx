@@ -18,4 +18,4 @@ const IssueTime = ({ value, onChange, readOnly = false }) => {
   );
 };
 
-export default React.memo(IssueTime);
+export default IssueTime;
