@@ -1,4 +1,4 @@
-const IssueRadio = ({value, onChange}) => {
+const IssueRadio = ({value, onChange, readOnly= false}) => {
   return (
     <fieldset className="flex space-x-4">
       <div className="w-full">
@@ -10,6 +10,7 @@ const IssueRadio = ({value, onChange}) => {
           className="peer hidden"
           onChange={onChange}
           checked={"TODO" === value}
+          readOnly={readOnly}
         />
         <label
           htmlFor="todo"
@@ -27,6 +28,7 @@ const IssueRadio = ({value, onChange}) => {
           className="peer hidden"
           onChange={onChange}
           checked={"PROGRESS" === value}
+          readOnly={readOnly}
         />
         <label
           htmlFor="progress"
@@ -44,6 +46,7 @@ const IssueRadio = ({value, onChange}) => {
           className="peer hidden"
           onChange={onChange}
           checked={"COMPLETE" === value}
+          readOnly={readOnly}
         />
         <label
           htmlFor="complete"

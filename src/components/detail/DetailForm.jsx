@@ -22,19 +22,19 @@ const DetailForm = ({ props }) => {
   const dispatch = useDetailDispatch();
   const { mutate } = useMutation(
     () => {
-      return deleteIssue({id: props.id, status: props.status});
+      return deleteIssue({ id: props.id, status: props.status });
     },
     {
       onSuccess: () => {
         queryClient.invalidateQueries(props.status);
-        queryClient.invalidateQueries('datail');
+        queryClient.invalidateQueries("datail");
         dispatch({ type: "OFF" });
       },
     }
   );
-  const { mutate:mutateUpdate } = useMutation(
+  const { mutate: mutateUpdate } = useMutation(
     () => {
-      return updateIssue(props.status,{
+      return updateIssue(props.status, {
         title,
         time,
         content,
@@ -47,7 +47,7 @@ const DetailForm = ({ props }) => {
       onSuccess: () => {
         queryClient.invalidateQueries(props.status);
         queryClient.invalidateQueries(status);
-        queryClient.invalidateQueries('datail');
+        queryClient.invalidateQueries("datail");
         dispatch({ type: "OFF" });
       },
     }
@@ -77,7 +77,7 @@ const DetailForm = ({ props }) => {
       </div>
       <form action="" className="space-y-4">
         <IssueTitle value={title} onChange={onChangeTitle} readOnly={!mode} />
-        <IssueRadio value={status} onChange={onChangeStatus}/>
+        <IssueRadio value={status} onChange={mode ? onChangeStatus : undefined} readOnly={!mode}/>
         <IssueManager
           managers={managers}
           setManagers={setManagers}
