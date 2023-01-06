@@ -34,7 +34,6 @@ const DetailForm = ({ props }) => {
   );
   const { mutate:mutateUpdate } = useMutation(
     () => {
-      console.log("updata", props.status);
       return updateIssue(props.status,{
         title,
         time,

@@ -27,7 +27,6 @@ export const getIssueById = async ({status, id}) => {
 }
 
 export const deleteIssue = async ({status, id}) => {
-  console.log(status, id);
   const {data} = await axiosInstance.delete(PATH[status] + id, {});
   return data;
 }
@@ -46,7 +45,6 @@ export const updateIssue = async (prevStatus, { title, time, content, managers, 
 
 // {id, status}
 export const updateIssueOrder = async ({prev, next}) => {
-  console.log(`gogogo ${prev.id},${next.id}`);
   const {data} = await axiosInstance.put(PATH.ISSUE + prev.id, {
     prev,
     next,

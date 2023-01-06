@@ -6,7 +6,6 @@ import Card from "./Card"
 import { useState } from "react";
 
 const DraggableCard = ({ title, time, managers, id, status }) => {
-  const [isEnter, setIsEnter] = useState(false);
   let { startRef, enterRef } = useDrag();
   const queryClient = useQueryClient();
   const { mutate, isLoading, error } = useMutation(updateIssueOrder, {
@@ -22,12 +21,7 @@ const DraggableCard = ({ title, time, managers, id, status }) => {
   const onDragEnter = (e) => {
     e.stopPropagation();
     enterRef.current = { id, status };
-    setIsEnter(true);
   };
-  const onDragLeave = (e) => {
-    e.stopPropagation();
-    setIsEnter(false);
-  }
   const onDragEnd = (e) => {
     e.stopPropagation();
     if (
@@ -45,9 +39,7 @@ const DraggableCard = ({ title, time, managers, id, status }) => {
       draggable
       onDragStart={onDragStart}
       onDragEnter={onDragEnter}
-      onDragLeave={onDragLeave}
       onDragEnd={onDragEnd}
-      className={`cursor-move ${isEnter ? "rounded-lg border-t-8 border-slate-600" : ""}`}
     >
       <Card
         title={title}

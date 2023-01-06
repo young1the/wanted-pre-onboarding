@@ -5,7 +5,6 @@ export const handlers = [
   // todo
   rest.post("http://test.com/todo/", (req, res, ctx) => {
     const _result = todoList.append({ ...req.body, id: req.id });
-    console.log(todoList.toArray());
     if (_result) return res(ctx.status(200));
     else return res(ctx.status(400));
   }),
@@ -45,7 +44,6 @@ export const handlers = [
   // progress
   rest.post("http://test.com/progress/", (req, res, ctx) => {
     const _result = progressList.append({ ...req.body, id: req.id });
-    console.log(progressList.toArray());
     if (_result) return res(ctx.status(200));
     else return res(ctx.status(400));
   }),
@@ -85,14 +83,11 @@ export const handlers = [
   // complete
   rest.post("http://test.com/complete/", (req, res, ctx) => {
     const _result = completeList.append({ ...req.body, id: req.id });
-    console.log(completeList.toArray());
     if (_result) return res(ctx.status(200));
     else return res(ctx.status(400));
   }),
   rest.get("http://test.com/complete/", (req, res, ctx) => {
     const _array = completeList.toArray();
-    console.log(_array);
-    console.log(`${_array} completeList`);
     return res(ctx.status(200), ctx.json(_array));
   }),
   rest.get("http://test.com/complete/:id", (req, res, ctx) => {

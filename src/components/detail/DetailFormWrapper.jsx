@@ -11,7 +11,6 @@ const DetailFormWrapper = () => {
     () => { return getIssueById({status:issueStat.status, id:issueStat.id});},
     {
       onSuccess: () => {
-        console.log(data);
       },
     }
   );

@@ -13,7 +13,6 @@ const CardContainer = ({ type }) => {
       staleTime: 2000,
       keepPreviousData: true,
       onSuccess: () => {
-        console.log(data, type);
       },
     }
   );
