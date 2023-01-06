@@ -16,7 +16,7 @@ const Section = ({ title, type }) => {
   
   return (
     <div
-      className="relative rounded-xl bg-white border border-gray-800 p-8 shadow-xl"
+      className="relative rounded-xl bg-white border border-gray-800 p-8 shadow-xl min-h-[30rem]"
       onDragEnter={onDragEnterField}
     >
       <h1 className="text-2xl font-bold text-gray-900 mb-6">{title}</h1>
