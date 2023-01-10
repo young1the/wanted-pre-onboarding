@@ -1,9 +1,10 @@
 import { Styled } from "./styled";
+import { Sick } from "@/types/api";
 
-const SearchItem = () => {
+const SearchItem = ({ sickCd, sickNm }: Sick) => {
   return (
     <Styled.Wrapper>
-      <Styled.Title>안녕하세요</Styled.Title>
+      <Styled.Title>{sickNm}</Styled.Title>
     </Styled.Wrapper>
   );
 };
