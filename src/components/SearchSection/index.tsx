@@ -1,21 +1,15 @@
 import { Styled } from "./styled";
 import SearchBar from "../SearchBar";
 import SearchDetail from "../SearchDetail";
-import { ReactEventHandler, useState } from "react";
+import useToggle from "../../hooks/useToggle";
 
 const SearchSection = () => {
-  const [isFocused, setIsFocused] = useState(false);
-  const onBlur = () => {
-    setIsFocused(false);
-  }
-  const onClick = () => {
-    setIsFocused(true);
-  }
+  const {isOn, on, off} = useToggle();
 
   return (
     <Styled.Wrapper>
-      <SearchBar onBlur={onBlur} onClick={onClick}/>
-      {isFocused ? <SearchDetail /> : null}
+      <SearchBar onBlur={off} onClick={on}/>
+      {isOn ? <SearchDetail /> : null}
     </Styled.Wrapper>
   );
 };
