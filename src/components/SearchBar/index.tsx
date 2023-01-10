@@ -1,13 +1,24 @@
 import { Styled } from "./styled";
 
-const SearchBar = ({onBlur, onClick} : any) => {
+export type SearchBarProps = {
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur: () => void;
+  onClick: () => void;
+};
+
+const SearchBar = ({ value, onChange, onBlur, onClick }: SearchBarProps) => {
   return (
     <Styled.Container onClick={onClick}>
-      <Styled.Input onBlur={onBlur} placeholder="질환명을 입력해 주세요."/>
-      <Styled.Button>
-      🔍</Styled.Button>
+      <Styled.Input
+        value={value}
+        onChange={onChange}
+        onBlur={onBlur}
+        placeholder="질환명을 입력해 주세요."
+      />
+      <Styled.Button>🔍</Styled.Button>
     </Styled.Container>
-  )
+  );
 };
 
 export default SearchBar;
