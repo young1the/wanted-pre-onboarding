@@ -1,4 +1,4 @@
-import SearchItem from "../SearchItem";
+import SearchItem from "@/components/SearchItem";
 import { Styled } from "./styled";
 
 const SearchDetail = () => {

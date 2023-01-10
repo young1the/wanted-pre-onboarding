@@ -1,7 +1,7 @@
 import { Styled } from "./styled";
-import SearchBar from "../SearchBar";
-import SearchDetail from "../SearchDetail";
-import useToggle from "../../hooks/useToggle";
+import SearchBar from "@/components/SearchBar";
+import SearchDetail from "@/components/SearchDetail";
+import useToggle from "@/hooks/useToggle";
 
 const SearchSection = () => {
   const {isOn, on, off} = useToggle();
