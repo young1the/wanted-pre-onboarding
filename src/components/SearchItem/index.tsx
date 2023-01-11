@@ -8,15 +8,29 @@ const SearchItem = ({ sickCd, sickNm, value }: Props) => {
   const content = useMemo(() => {
     const _cutted = sickNm.split(value);
     return _cutted.map((ele, idx) => {
-      if (idx === _cutted.length - 1) return <p>{ele}</p>;
+      if (ele === "")
+        return (
+          <div key={sickCd + ele}>
+            <Styled.Strong>{value}</Styled.Strong>
+          </div>
+        );
+      if (idx === _cutted.length - 1)
+        return (
+          <div key={sickCd + ele}>
+            <p>{ele}</p>
+          </div>
+        );
       return (
-        <>
-          <p>{ele}</p>
-          <strong>{value}</strong>
-        </>
+        <div key={sickCd + idx}>
+          <p>
+            {ele}
+            <Styled.Strong>{value}</Styled.Strong>
+          </p>
+        </div>
       );
     });
   }, [sickNm]);
+
   return <Styled.Wrapper>{content}</Styled.Wrapper>;
 };
 
