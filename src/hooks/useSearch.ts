@@ -10,6 +10,7 @@ const useSearch = <T>(searchFn: (arg: string) => Promise<T[]>, delay = 0) => {
   const search = async (arg: string) => {
     setSearchState("Loading");
     const data: T[] = await searchFn(arg);
+    console.log(data);
     if (data.length === 0) setSearchState("Fail");
     else {
       setResults([...data]);
