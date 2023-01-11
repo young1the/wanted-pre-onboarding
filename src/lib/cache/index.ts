@@ -2,7 +2,8 @@ import { TSickInfo } from "@/types/api";
 
 interface ICacheStorage {
   name: string;
-  put(request: string, response: TSickInfo[]): any;
+  put(request: string, response: TSickInfo[]): void;
+  match(request: string): Promise<TSickInfo[]> | undefined;
 }
 
 class CacheStorage implements ICacheStorage {
