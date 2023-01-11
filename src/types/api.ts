@@ -1,4 +1,8 @@
-export type Sick = {
-	sickCd: string,
-	sickNm: string,
-}
+export type TSickInfo = {
+  sickCd: string;
+  sickNm: string;
+};
+
+export type TSickParams = {
+  q: string;
+};
