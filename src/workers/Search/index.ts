@@ -1,18 +1,15 @@
-import { PATHS } from "@/constants/api";
 import { TSickInfo, TSickParams } from "@/types/api";
-import { axiosInstance } from "@/lib/axios";
+import { getSickInfoByQueryString } from "@/lib/axios/api";
 
 interface ISearchWorker {
-  getSickInfoByQueryString(value: string): Promise<TSickInfo[]>;
+  getSickInfos(value: string): Promise<TSickInfo[]>;
 }
 
 class SearchWorker implements ISearchWorker {
-  async getSickInfoByQueryString(value: string) {
+  async getSickInfos(value: string) {
     const params: TSickParams = { q: value };
-    const { data } = await axiosInstance.get<TSickInfo[]>(PATHS.SICK, {
-      params,
-    });
-    return data;
+    const sickInfos = await getSickInfoByQueryString(params);
+    return sickInfos;
   }
 }
 

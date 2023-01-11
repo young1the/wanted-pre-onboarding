@@ -1,11 +1,14 @@
 import { Styled } from "./styled";
 import { useMemo } from "react";
-import SearchBar from "@/components/SearchBar";
-import SearchDetail from "@/components/SearchDetail";
+
 import useToggle from "@/hooks/useToggle";
 import useSearch from "@/hooks/useSearch";
 import SearchWorker from "@/workers/Search";
+
 import { TSickInfo } from "@/types/api";
+
+import SearchBar from "@/components/SearchBar";
+import SearchDetail from "@/components/SearchDetail";
 import SearchItem from "@/components/SearchItem";
 
 export type TContent = {
@@ -19,7 +22,7 @@ export type TContent = {
 const SearchSection = () => {
   const { isOn, on, off } = useToggle();
   const { value, onChange, searchState, result } = useSearch(
-    SearchWorker.getSickInfoByQueryString
+    SearchWorker.getSickInfos, 1000
   );
 
   const content = useMemo<TContent>(() => {
