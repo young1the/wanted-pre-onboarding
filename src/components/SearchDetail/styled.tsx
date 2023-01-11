@@ -21,5 +21,16 @@ export const Styled = {
   List: styled.div`
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    min-height: 42px;
+    max-height: 420px;
+    overflow: auto;
+    &::-webkit-scrollbar {
+      width: 0.8rem;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: #007be9;
+      border-radius: 24px;
+    }
   `,
 };

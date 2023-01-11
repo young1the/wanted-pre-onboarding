@@ -1,7 +1,7 @@
 import { Styled } from "./styled";
-import { Sick } from "@/types/api";
+import { TSickInfo } from "@/types/api";
 
-const SearchItem = ({ sickCd, sickNm }: Sick) => {
+const SearchItem = ({ sickCd, sickNm }: TSickInfo) => {
   return (
     <Styled.Wrapper>
       <Styled.Title>{sickNm}</Styled.Title>
