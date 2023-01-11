@@ -1,15 +1,15 @@
 import { GlobalStyle } from "./style/global";
 import { Styled } from "./App.styled";
 import SearchSection from "./components/SearchSection";
-import CacheStorage from "./lib/cache";
 
 function App() {
+  const deleteCachedData = () => {
+    caches.delete("sick");
+  };
   return (
     <Styled.Wrapper>
       <GlobalStyle />
-      <button onClick={()=>{
-  caches.delete('sick')
-      }}>Delete All Cache</button>
+      <button onClick={deleteCachedData}> Delete CachedData </button>
       <SearchSection />
     </Styled.Wrapper>
   );

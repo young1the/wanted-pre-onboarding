@@ -12,7 +12,6 @@ class SearchWorker implements ISearchWorker {
     const params: TSickParams = { q: query };
     const cachedData = await Cache.match(query);
     if (cachedData) {
-      console.log("캐싱된 데이터");
       return cachedData;
     }
     const requestedData = await getSickInfoByQueryString(params);

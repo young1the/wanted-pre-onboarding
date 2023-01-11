@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Styled = {
-	Wrapper: styled.div`
-		position: relative;
-	`
-}
+  Wrapper: styled.div`
+    position: relative;
+  `,
+};

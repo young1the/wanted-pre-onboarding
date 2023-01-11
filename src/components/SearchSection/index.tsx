@@ -22,7 +22,8 @@ export type TContent = {
 const SearchSection = () => {
   const { isOn, on, off } = useToggle();
   const { value, onChange, searchState, result } = useSearch(
-    SearchWorker.getSickInfos, 1000
+    SearchWorker.getSickInfos,
+    1000
   );
 
   const content = useMemo<TContent>(() => {

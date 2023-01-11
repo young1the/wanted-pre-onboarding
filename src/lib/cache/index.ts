@@ -1,5 +1,4 @@
-import { TSickParams, TSickInfo } from "@/types/api";
-import { formToJSON } from "axios";
+import { TSickInfo } from "@/types/api";
 
 interface ICacheStorage {
   name: string;
@@ -18,6 +17,7 @@ class CacheStorage implements ICacheStorage {
     const cache = await caches.open(this.name);
     const response = await cache.match(request);
     const data: TSickInfo[] = await response?.json();
+    if (data) console.log("캐싱된 데이터 발견");
     return data;
   }
 }
