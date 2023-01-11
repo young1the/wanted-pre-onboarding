@@ -2,12 +2,15 @@ import styled from "styled-components";
 
 export const Styled = {
   Wrapper: styled.div`
+    display:flex;
     padding: 12px;
     cursor:pointer;
     &:hover {
       background-color: #eeeeee;
     }
-  `,
-  Title: styled.h1`
+    font-size: 1rem;
+    & > strong {
+      font-weight: 800;
+    }
   `,
 };

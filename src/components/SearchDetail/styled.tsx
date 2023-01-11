@@ -11,20 +11,23 @@ export const Styled = {
     border-radius: 42px;
   `,
   Container: styled.div`
+    display: flex;
+    flex-direction: column;
     padding: 16px;
   `,
-  Title: styled.h1`
+  Title: styled.div`
     color: gray;
     margin-bottom: 1rem;
     font-size: 0.8rem;
   `,
   List: styled.div`
+    max-height: 420px;
+    min-height: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    min-height: 42px;
-    max-height: 420px;
-    overflow: auto;
+    justify-content: flex-start;
+    overflow-y: auto;
+    margin: auto 0;
     &::-webkit-scrollbar {
       width: 0.8rem;
     }
