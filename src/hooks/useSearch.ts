@@ -4,7 +4,7 @@ import useInput from "@/hooks/useInput";
 export type TSearchStates = "None" | "Loading" | "Done" | "Fail";
 
 const useSearch = <T>(searchFn: (arg: string) => Promise<T[]>, delay = 0) => {
-  const { value, onChange } = useInput();
+  const { value, onChange, setValue } = useInput();
   const [result, setResults] = useState<T[]>();
   const [searchState, setSearchState] = useState<TSearchStates>("None");
   const search = async (arg: string) => {
@@ -31,7 +31,7 @@ const useSearch = <T>(searchFn: (arg: string) => Promise<T[]>, delay = 0) => {
     };
   }, [value]);
 
-  return { value, onChange, searchState, result };
+  return { value, setValue, onChange, searchState, result };
 };
 
 export default useSearch;

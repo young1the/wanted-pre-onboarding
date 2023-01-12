@@ -21,12 +21,13 @@ export type TContent = {
 
 const SearchSection = () => {
   const { isOn, on, off } = useToggle();
-  const { value, onChange, searchState, result } = useSearch(
+  const { value, onChange, setValue ,searchState, result } = useSearch(
     SearchWorker.getSickInfos,
     1000
   );
+  const valueRef = useRef(value);
   const [tabIndex, setTabIndex] = useState<number>(-1);
-  const handleKeyArrow = useCallback(
+  const onKeyDownHandler = useCallback(
     (ev: KeyboardEvent) => {
       if (result) {
         switch (ev.key) {
@@ -42,14 +43,19 @@ const SearchSection = () => {
             break;
           case "Escape":
             off();
+            setValue("");
             setTabIndex(-1);
             break;
           case "Enter":
+            alert(valueRef.current);
+            off();
+            setValue("");
+            setTabIndex(-1);
             break;
         }
       }
     },
-    [result]
+    [result, valueRef.current]
   );
 
   const content = useMemo<TContent>(() => {
@@ -64,6 +70,7 @@ const SearchSection = () => {
             sickNm={sickNm}
             value={value}
             isFocused={index === tabIndex}
+            focusValueRef={valueRef}
           />
         );
       }),
@@ -81,9 +88,9 @@ const SearchSection = () => {
           setTabIndex(-1);
         }}
         onClick={on}
-        onKeyDown={handleKeyArrow}
+        onKeyDown={onKeyDownHandler}
       />
-      {isOn ? <SearchDetail content={content[searchState]} /> : null}
+      {isOn || value ? <SearchDetail content={content[searchState]} /> : null}
     </Styled.Wrapper>
   );
 };
