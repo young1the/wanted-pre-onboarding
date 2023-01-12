@@ -30,13 +30,14 @@ const SearchSection = () => {
     return {
       None: <div>검색어를 입력해주세요.</div>,
       Loading: <div>데이터를 불러오고 있습니다.</div>,
-      Done: result?.map(({ sickCd, sickNm }: TSickInfo) => {
+      Done: result?.map(({ sickCd, sickNm }: TSickInfo, index) => {
         return (
           <SearchItem
             key={sickCd}
             sickCd={sickCd}
             sickNm={sickNm}
             value={value}
+            tabIndex={index}
           />
         );
       }),
@@ -47,7 +48,8 @@ const SearchSection = () => {
   return (
     <Styled.Wrapper>
       <SearchBar value={value} onChange={onChange} onBlur={off} onClick={on} />
-      {isOn ? <SearchDetail content={content[searchState]} /> : null}
+      {/* {isOn ? <SearchDetail content={content[searchState]} /> : null} */}
+      <SearchDetail content={content[searchState]} />
     </Styled.Wrapper>
   );
 };

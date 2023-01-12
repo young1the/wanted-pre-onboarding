@@ -16,7 +16,7 @@ const SearchBar = ({ value, onChange, onBlur, onClick }: SearchBarProps) => {
         onBlur={onBlur}
         placeholder="질환명을 입력해 주세요."
       />
-      <Styled.Button>🔍</Styled.Button>
+      <Styled.Button tabIndex={-1}>🔍</Styled.Button>
     </Styled.Container>
   );
 };
