@@ -2,9 +2,9 @@ import { Styled } from "./styled";
 import { TSickInfo } from "@/types/api";
 import { useMemo } from "react";
 
-type Props = TSickInfo & { value: string } & { tabIndex: number };
+type Props = TSickInfo & { value: string; isFocused: boolean };
 
-const SearchItem = ({ sickCd, sickNm, value, tabIndex }: Props) => {
+const SearchItem = ({ sickCd, sickNm, value, isFocused }: Props) => {
   const content = useMemo(() => {
     const _cutted = sickNm.split(value);
     return _cutted.map((ele, idx) => {
@@ -19,8 +19,7 @@ const SearchItem = ({ sickCd, sickNm, value, tabIndex }: Props) => {
       );
     });
   }, [sickNm]);
-
-  return <Styled.Wrapper tabIndex={tabIndex}>{content}</Styled.Wrapper>;
+  return <Styled.Wrapper isFocused={isFocused}>{content}</Styled.Wrapper>;
 };
 
 export default SearchItem;

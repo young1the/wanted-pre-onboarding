@@ -1,5 +1,5 @@
 import { Styled } from "./styled";
-import { useMemo } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import useToggle from "@/hooks/useToggle";
 import useSearch from "@/hooks/useSearch";
@@ -25,6 +25,32 @@ const SearchSection = () => {
     SearchWorker.getSickInfos,
     1000
   );
+  const [tabIndex, setTabIndex] = useState<number>(-1);
+  const handleKeyArrow = useCallback(
+    (ev: KeyboardEvent) => {
+      if (result) {
+        switch (ev.key) {
+          case "Tab":
+            ev.preventDefault();
+            setTabIndex((prev) => (prev === result?.length - 1 ? 0 : prev + 1));
+            break;
+          case "ArrowDown":
+            setTabIndex((prev) => (prev === result?.length - 1 ? 0 : prev + 1));
+            break;
+          case "ArrowUp":
+            setTabIndex((prev) => (prev === 0 ? -1 : prev - 1));
+            break;
+          case "Escape":
+            off();
+            setTabIndex(-1);
+            break;
+          case "Enter":
+            break;
+        }
+      }
+    },
+    [result]
+  );
 
   const content = useMemo<TContent>(() => {
     return {
@@ -37,19 +63,27 @@ const SearchSection = () => {
             sickCd={sickCd}
             sickNm={sickNm}
             value={value}
-            tabIndex={index}
+            isFocused={index === tabIndex}
           />
         );
       }),
       Fail: <div>검색결과가 없습니다.</div>,
     };
-  }, [result]);
+  }, [result, tabIndex]);
 
   return (
     <Styled.Wrapper>
-      <SearchBar value={value} onChange={onChange} onBlur={off} onClick={on} />
-      {/* {isOn ? <SearchDetail content={content[searchState]} /> : null} */}
-      <SearchDetail content={content[searchState]} />
+      <SearchBar
+        value={value}
+        onChange={onChange}
+        onBlur={() => {
+          off();
+          setTabIndex(-1);
+        }}
+        onClick={on}
+        onKeyDown={handleKeyArrow}
+      />
+      {isOn ? <SearchDetail content={content[searchState]} /> : null}
     </Styled.Wrapper>
   );
 };

@@ -1,3 +1,4 @@
+import { useRef } from "react"
 import { Styled } from "./styled";
 
 type Props = {
@@ -5,11 +6,12 @@ type Props = {
 };
 
 const SearchDetail = ({ content }: Props) => {
+  const divRef = useRef<HTMLDivElement>(null);
   return (
     <Styled.Wrapper>
       <Styled.Container>
         <Styled.Title>추천검색어</Styled.Title>
-        <Styled.List>{content}</Styled.List>
+        <Styled.List ref={divRef}>{content}</Styled.List>
       </Styled.Container>
     </Styled.Wrapper>
   );

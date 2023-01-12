@@ -7,16 +7,17 @@ export type SearchBarProps = {
   onClick: () => void;
 };
 
-const SearchBar = ({ value, onChange, onBlur, onClick }: SearchBarProps) => {
+const SearchBar = ({ value, onChange, onBlur, onClick, onKeyDown }: any) => {
   return (
     <Styled.Container onClick={onClick}>
       <Styled.Input
         value={value}
         onChange={onChange}
         onBlur={onBlur}
+        onKeyDown={onKeyDown}
         placeholder="질환명을 입력해 주세요."
       />
-      <Styled.Button tabIndex={-1}>🔍</Styled.Button>
+      <Styled.Button>🔍</Styled.Button>
     </Styled.Container>
   );
 };
