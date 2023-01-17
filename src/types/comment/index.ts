@@ -1,5 +1,5 @@
 export type TComment = {
-  id: number;
+  id: string;
   profile_url: string;
   author: string;
   content: string;

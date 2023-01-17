@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { changePage } from "../util/redux/page/action";

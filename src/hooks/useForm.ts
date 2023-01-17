@@ -1,6 +1,8 @@
-import { useDispatch } from "react-redux";
-// import { createComment } from "../util/redux/page/action";
+import { useDispatch, useSelector } from "react-redux";
 import useInput from "./useInput";
+import ApiService from "../util/axios";
+import { changePage } from "../util/redux/page/action";
+import { formActions } from "../util/redux/form";
 
 export default function useForm() {
   const {
@@ -24,24 +26,29 @@ export default function useForm() {
     clear: createAtClear,
   } = useInput();
   const dispatch = useDispatch();
+  const formState = useSelector<any, any>(state=>state.form);
   const clearAll = () => {
     imageClear();
     authorClear();
     contentClear();
     createAtClear();
   };
-  const formSubmitHandler = (e: any) => {
+
+  const formSubmitHandler = async (e: any) => {
     e.preventDefault();
-    // dispatch(
-    //   createComment({
-    //     profile_url: imageValue,
-    //     author: authorValue,
-    //     content: contentValue,
-    //     createdAt: createAtValue,
-    //   })
-    // );
+    dispatch(formActions.changeStatus("LOADING"));
+    await ApiService.postComment({
+      profile_url: imageValue,
+      author: authorValue,
+      content: contentValue,
+      createdAt: createAtValue,
+    });
+    dispatch(formActions.changeStatus("DONE"));
+    dispatch(changePage(1));
     clearAll();
   };
+
+
   return {
     imageValue,
     imageOnChange,

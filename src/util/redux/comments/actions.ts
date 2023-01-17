@@ -4,7 +4,7 @@ import store from "..";
 import { pageActions } from "../page";
 
 export const getComments = () => {
-  const { commentPerPage, pageIndex, init } = store.getState().page;
+  const { commentPerPage, pageIndex, totalAmount } = store.getState().page;
   return async (dispatch: any) => {
     try {
       dispatch(commentsActions.changeStatus({ status: "LOADING" }));
@@ -13,15 +13,15 @@ export const getComments = () => {
         _limit: commentPerPage,
       });
       const comments = response.data;
-	  const totalAmount = response.headers["x-total-count"];
-	  if (!init) {
-		  dispatch(pageActions.init({totalAmount}))
-	  }
+      const newTotalAmount = response.headers["x-total-count"];
       dispatch(
         commentsActions.get({
           comments,
         })
       );
+      if (totalAmount + "" !== newTotalAmount) {
+        dispatch(pageActions.init({ totalAmount: newTotalAmount }));
+      }
     } catch (err) {
       dispatch(commentsActions.changeStatus({ status: "ERROR" }));
     }

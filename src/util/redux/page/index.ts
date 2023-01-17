@@ -5,7 +5,6 @@ type TPageSliceState = {
   commentPerPage: number,
   pageAmount: number,
   pageIndex: number,
-  init: boolean,
 }
 
 const initialState : TPageSliceState = {
@@ -13,7 +12,6 @@ const initialState : TPageSliceState = {
   commentPerPage: 5,
   pageAmount: 0,
   pageIndex: 1,
-  init: false,
 };
 
 const page = createSlice({
@@ -22,8 +20,8 @@ const page = createSlice({
   reducers: {
     init(state, action) {
       state.totalAmount = action.payload.totalAmount;
+      state.pageIndex = 1;
       state.pageAmount = Math.ceil(state.totalAmount / state.commentPerPage);
-      state.init = true;
     },
     change(state, action) {
       state.pageIndex = action.payload.pageIndex;

@@ -69,11 +69,10 @@ class ApiService implements IApiService {
     }
   }
 
-  public async deleteComment(id: string, data: any) {
+  public async deleteComment(id: string) {
     try {
       const response = await this.axiosInstance.delete(
         PATHS.comment + `/${id}`,
-        data
       );
       return response.data;
     } catch (error) {

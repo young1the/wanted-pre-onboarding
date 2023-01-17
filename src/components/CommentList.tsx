@@ -1,6 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { TComment } from "../types/comment";
+import { useDispatch } from "react-redux";
+import { changePage } from "../util/redux/page/action";
+import ApiService from "../util/axios"
+import { formActions } from "../util/redux/form";
 
 const Comment = styled.div`
   padding: 7px 10px;
@@ -27,7 +31,8 @@ const Content = styled.div`
 const Button = styled.div`
   text-align: right;
   margin: 10px 0;
-  & > a {
+  & > p {
+    display: inline;
     margin-right: 10px;
     padding: 0.375rem 0.75rem;
     border-radius: 0.25rem;
@@ -37,6 +42,13 @@ const Button = styled.div`
 `;
 
 function CommentList({comments}:{comments : TComment[]}) {
+  const dispatch = useDispatch();
+  const deleteHandler = async (id: string) => {
+    dispatch(formActions.changeStatus("LOADING"));
+    await ApiService.deleteComment(id);
+    dispatch(formActions.changeStatus("DONE"));
+    dispatch(changePage(1));
+  }
   return (
     <>
         {comments.map((comment: TComment) => (
@@ -48,8 +60,8 @@ function CommentList({comments}:{comments : TComment[]}) {
             <Content>{comment.content}</Content>
 
             <Button>
-              <a>수정</a>
-              <a>삭제</a>
+              <p>수정</p>
+              <p onClick={()=>{deleteHandler(comment.id)}}>삭제</p>
             </Button>
 
             <hr />
