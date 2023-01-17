@@ -1,14 +1,22 @@
 import axios from "axios";
 
 import { BASE_URL, PATHS } from "../../constants/api";
+import { PARAMS } from "../../constants/page";
 
 interface IApiService {
   postComment(data: any): Promise<any>;
-  getComments(): Promise<any>;
+  getComments(params: any): Promise<any>;
   getCommentById(id: string): Promise<any>;
   putComment(id: string, data: any): Promise<any>;
   deleteComment(id: string, data: any): Promise<any>;
 }
+
+type TParams = {
+  _page?: number;
+  _limit?: number;
+  _order?: string;
+  _sort?: string;
+};
 
 class ApiService implements IApiService {
   private axiosInstance = axios.create({
@@ -24,10 +32,17 @@ class ApiService implements IApiService {
     }
   }
 
-  public async getComments() {
+  public async getComments({
+    _page = 1,
+    _limit = PARAMS.COMMENT_PER_PAGE,
+    _order = PARAMS.ORDER,
+    _sort = PARAMS.SORT,
+  }: TParams) {
     try {
-      const response = await this.axiosInstance.get(PATHS.comment);
-      return response.data;
+      const response = await this.axiosInstance.get(PATHS.comment, {
+        params: { _page, _limit, _order, _sort },
+      });
+      return response;
     } catch (error) {
       throw error;
     }

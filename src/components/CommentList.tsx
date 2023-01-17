@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { TComment } from "../types/comment";
 
@@ -37,19 +36,13 @@ const Button = styled.div`
   }
 `;
 
-function CommentList() {
-  const { comments, apiStatus } = useSelector<any, any>(
-    (state) => state.comments
-  );
+function CommentList({comments}:{comments : TComment[]}) {
   return (
     <>
-      {apiStatus === "DONE" ? (
-        comments.map((comment: TComment) => (
+        {comments.map((comment: TComment) => (
           <Comment key={comment.id}>
-            <img src={comment.profile_url} alt="" />
-
+            <img src={comment.profile_url} alt={comment.author} />
             {comment.author}
-
             <CreatedAt>{comment.createdAt}</CreatedAt>
 
             <Content>{comment.content}</Content>
@@ -61,12 +54,7 @@ function CommentList() {
 
             <hr />
           </Comment>
-        ))
-      ) : apiStatus === "LOADING" ? (
-        <p>데이터를 불러오고 있습니다.</p>
-      ) : apiStatus === "ERROR" ? (
-        <p>에러가 발생했습니다.</p>
-      ) : null}
+        ))}
     </>
   );
 }

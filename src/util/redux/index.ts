@@ -1,9 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
+import page from "./page";
 import comments from "./comments";
 
 const store = configureStore({
   reducer: {
-    comments,
+    page, comments,
   },
 });
 

@@ -9,7 +9,7 @@ type TCommentSliceState = {
 
 const initialState : TCommentSliceState = {
   comments: null,
-  apiStatus: "NONE",
+  apiStatus: "NONE"
 };
 
 const comments = createSlice({
@@ -22,16 +22,6 @@ const comments = createSlice({
     get(state, action) {
       state.comments = action.payload.comments;
       state.apiStatus = "DONE";
-    },
-    post(state, action) {
-      let _newArray;
-      if (state.comments) {
-        _newArray = state.comments.slice();
-        _newArray.push(action.payload.comment);
-        state.comments = _newArray;
-      } else {
-        _newArray = [action.payload.comment];
-      }
     },
   },
 });

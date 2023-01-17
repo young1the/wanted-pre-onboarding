@@ -1,5 +1,7 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { changePage } from "../util/redux/page/action";
 
 const PageListStyle = styled.div`
   margin-bottom: 20px;
@@ -8,12 +10,13 @@ const PageListStyle = styled.div`
 
 type ButtonProps = {
   active: boolean;
-}
+};
 
 const Page = styled.button<ButtonProps>`
   padding: 0.375rem 0.75rem;
   border-radius: 0.25rem;
   font-size: 1rem;
+  cursor: pointer;
   line-height: 1.5;
   border: 1px solid lightgray;
   ${({ active }) =>
@@ -25,14 +28,25 @@ const Page = styled.button<ButtonProps>`
   margin-right: 3px;
 `;
 
-function PageList() {
+function PageList({ pageIndex, pageAmount }: any) {
   const pageArray = [];
-
-  pageArray.push(
-    // 임시로 페이지 하나만 설정했습니다.
-    // TODO: PAGE 컴포넌트 만들기.
-    <div key="1">1</div>
-  );
+  const dispatch = useDispatch();
+  const onClickHandler = (i: number) => {
+    dispatch(changePage({ pageIndex: i }));
+  };
+  for (let i = 1; i <= pageAmount; ++i)
+    pageArray.push(
+      <Page
+        key={i}
+        active={pageIndex === i}
+        onClick={() => {
+          if (pageIndex !== i)
+            onClickHandler(i);
+        }}
+      >
+        {i}
+      </Page>
+    );
 
   return <PageListStyle>{pageArray}</PageListStyle>;
 }

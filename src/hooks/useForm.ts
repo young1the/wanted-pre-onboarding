@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { createComment } from "../util/redux/comments/action";
+// import { createComment } from "../util/redux/page/action";
 import useInput from "./useInput";
 
 export default function useForm() {
@@ -32,14 +32,14 @@ export default function useForm() {
   };
   const formSubmitHandler = (e: any) => {
     e.preventDefault();
-    dispatch(
-      createComment({
-        profile_url: imageValue,
-        author: authorValue,
-        content: contentValue,
-        createdAt: createAtValue,
-      })
-    );
+    // dispatch(
+    //   createComment({
+    //     profile_url: imageValue,
+    //     author: authorValue,
+    //     content: contentValue,
+    //     createdAt: createAtValue,
+    //   })
+    // );
     clearAll();
   };
   return {
