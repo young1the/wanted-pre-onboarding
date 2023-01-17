@@ -1,4 +1,4 @@
-import { bindActionCreators, createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { TComment } from '../../../types/comment';
 
 type TCommentSliceState = {
@@ -13,8 +13,18 @@ const comments = createSlice({
   name: 'comments',
   initialState,
   reducers: {
-    update(state, action) {
+    get(state, action) {
       state.comments = action.payload.comments;
+    },
+    post(state, action) {
+      let _newArray;
+      if (state.comments) {
+        _newArray = state.comments.slice();
+        _newArray.push(action.payload.comment);
+        state.comments = _newArray;
+      } else {
+        _newArray = [action.payload.comment];
+      }
     },
   },
 });

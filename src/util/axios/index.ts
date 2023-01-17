@@ -42,10 +42,10 @@ class ApiService implements IApiService {
     }
   }
 
-  public async putComment(id: string, data: any) {
+  public async putComment(data: any) {
     try {
       const response = await this.axiosInstance.put(
-        PATHS.comment + `/${id}`,
+        PATHS.comment + `/${data.id}`,
         data
       );
       return response.data;

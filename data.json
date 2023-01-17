@@ -153,6 +153,27 @@
       "author": "abc_22",
       "content": "주변에 React 개발자 있나요",
       "createdAt": "2022-03-22"
+    },
+    {
+      "profile_url": "https://google.com",
+      "author": "123",
+      "content": "123",
+      "createdAt": "123",
+      "id": 23
+    },
+    {
+      "profile_url": "https://google.com",
+      "author": "김부각",
+      "content": "123",
+      "createdAt": "2020-05-30",
+      "id": 24
+    },
+    {
+      "profile_url": "12",
+      "author": "김두한",
+      "content": "123",
+      "createdAt": "123",
+      "id": 25
     }
   ]
 }
