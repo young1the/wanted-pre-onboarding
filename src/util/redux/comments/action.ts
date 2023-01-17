@@ -5,6 +5,7 @@ import { TComment } from "../../../types/comment";
 export const getComments = () => {
   return async (dispatch : any) => {
     try {
+      dispatch(commentsActions.changeStatus({status: "LOADING"}));
       const comments = await ApiService.getComments();
       dispatch(
         commentsActions.get({
@@ -12,7 +13,7 @@ export const getComments = () => {
         })
       );
     } catch (err) {
-      throw err;
+      dispatch(commentsActions.changeStatus({status: "ERROR"}));
     }
   };
 };

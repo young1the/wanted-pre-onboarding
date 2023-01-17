@@ -1,5 +1,7 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
+import { TComment } from "../types/comment";
 
 const Comment = styled.div`
   padding: 7px 10px;
@@ -35,38 +37,36 @@ const Button = styled.div`
   }
 `;
 
-// 임시 데이터 입니다. 코드 작성시 data 부분을 지워주세요
-const data = [
-  {
-    id: 1,
-    profile_url: "https://picsum.photos/id/1/50/50",
-    author: "abc_1",
-    content: "UI 테스트는 어떻게 진행하나요",
-    createdAt: "2020-05-01",
-  },
-];
-
 function CommentList() {
+  const { comments, apiStatus } = useSelector<any, any>(
+    (state) => state.comments
+  );
   return (
     <>
-      {data.map((comment, key) => (
-        <Comment key={key}>
-          <img src={comment.profile_url} alt="" />
+      {apiStatus === "DONE" ? (
+        comments.map((comment: TComment) => (
+          <Comment key={comment.id}>
+            <img src={comment.profile_url} alt="" />
 
-          {comment.author}
+            {comment.author}
 
-          <CreatedAt>{comment.createdAt}</CreatedAt>
+            <CreatedAt>{comment.createdAt}</CreatedAt>
 
-          <Content>{comment.content}</Content>
+            <Content>{comment.content}</Content>
 
-          <Button>
-            <a>수정</a>
-            <a>삭제</a>
-          </Button>
+            <Button>
+              <a>수정</a>
+              <a>삭제</a>
+            </Button>
 
-          <hr />
-        </Comment>
-      ))}
+            <hr />
+          </Comment>
+        ))
+      ) : apiStatus === "LOADING" ? (
+        <p>데이터를 불러오고 있습니다.</p>
+      ) : apiStatus === "ERROR" ? (
+        <p>에러가 발생했습니다.</p>
+      ) : null}
     </>
   );
 }
