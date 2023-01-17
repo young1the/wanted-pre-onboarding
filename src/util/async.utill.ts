@@ -9,12 +9,13 @@ export const reducerUtils = {
     loading: true,
     error: null,
   }),
-  success: (data) => ({
+  // TODO: any -> specific type
+  success: (data : any) => ({
     data,
     loading: false,
     error: null,
   }),
-  error: (error) => ({
+  error: (error : any) => ({
     data: null,
     loading: false,
     error,

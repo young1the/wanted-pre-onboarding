@@ -6,7 +6,11 @@ const PageListStyle = styled.div`
   text-align: center;
 `;
 
-const Page = styled.button`
+type ButtonProps = {
+  active: boolean;
+}
+
+const Page = styled.button<ButtonProps>`
   padding: 0.375rem 0.75rem;
   border-radius: 0.25rem;
   font-size: 1rem;
@@ -26,7 +30,8 @@ function PageList() {
 
   pageArray.push(
     // 임시로 페이지 하나만 설정했습니다.
-    <Page key="1">1</Page>
+    // TODO: PAGE 컴포넌트 만들기.
+    <div key="1">1</div>
   );
 
   return <PageListStyle>{pageArray}</PageListStyle>;
