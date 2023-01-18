@@ -1,19 +1,19 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { TComment } from '../../../types/comment';
-import { TApiStatus } from '../../../types/common';
+import { createSlice } from "@reduxjs/toolkit";
+import { TComment } from "../../../types/comment";
+import { TApiStatus } from "../../../types/common";
 
 type TCommentSliceState = {
-  comments: TComment[] | null,
-  apiStatus: TApiStatus,
-}
+  comments: TComment[] | null;
+  apiStatus: TApiStatus;
+};
 
-const initialState : TCommentSliceState = {
+const initialState: TCommentSliceState = {
   comments: null,
-  apiStatus: "NONE"
+  apiStatus: "NONE",
 };
 
 const comments = createSlice({
-  name: 'comments',
+  name: "comments",
   initialState,
   reducers: {
     changeStatus(state, action) {

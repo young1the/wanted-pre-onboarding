@@ -4,32 +4,29 @@ import useInput from "./useInput";
 import ApiService from "../util/axios";
 import { changePage } from "../util/redux/page/action";
 import { formActions } from "../util/redux/form";
-import { TComment } from "../types/comment";
 import { getComments } from "../util/redux/comments/actions";
-
-export type TUseFormInitialState = undefined | Omit<TComment, "id">;
 
 export default function useForm() {
   const {
-    value: imageValue,
+    ref: profileRef,
     onChange: imageOnChange,
     clear: imageClear,
     setValue: profileSetValue,
   } = useInput();
   const {
-    value: authorValue,
+    ref: authorRef,
     onChange: authorOnchange,
     clear: authorClear,
     setValue: authorSetValue,
   } = useInput();
   const {
-    value: contentValue,
+    ref: contentRef,
     onChange: contentOnChange,
     clear: contentClear,
     setValue: contentSetValue,
   } = useInput();
   const {
-    value: createAtValue,
+    ref: createAtRef,
     onChange: createAtOnChange,
     clear: createAtClear,
     setValue: createAtSetValue,
@@ -71,19 +68,19 @@ export default function useForm() {
     dispatch(formActions.changeStatus("LOADING"));
     if (formState.formTodo === "POST") {
       await ApiService.postComment({
-        profile_url: imageValue.current.value,
-        author: authorValue.current.value,
-        content: contentValue.current.value,
-        createdAt: createAtValue.current.value,
+        profile_url: profileRef.current.value,
+        author: authorRef.current.value,
+        content: contentRef.current.value,
+        createdAt: createAtRef.current.value,
       });
       dispatch(changePage(1));
     } else if (formState.formTodo === "PUT") {
       await ApiService.putComment({
         id: formState.comment.id,
-        profile_url: imageValue.current.value,
-        author: authorValue.current.value,
-        content: contentValue.current.value,
-        createdAt: createAtValue.current.value,
+        profile_url: profileRef.current.value,
+        author: authorRef.current.value,
+        content: contentRef.current.value,
+        createdAt: createAtRef.current.value,
       });
       dispatch(getComments());
     }
@@ -92,13 +89,13 @@ export default function useForm() {
   };
 
   return {
-    imageValue,
+    profileRef,
     imageOnChange,
-    authorValue,
+    authorRef,
     authorOnchange,
-    contentValue,
+    contentRef,
     contentOnChange,
-    createAtValue,
+    createAtRef,
     createAtOnChange,
     formSubmitHandler,
   };

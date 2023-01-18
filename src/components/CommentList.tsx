@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import styled from "styled-components";
 import { TComment } from "../types/comment";
 import { useDispatch } from "react-redux";
@@ -43,15 +43,21 @@ const Button = styled.div`
 
 function CommentList({ comments }: { comments: TComment[] }) {
   const dispatch = useDispatch();
-  const deleteHandler = async (id: string) => {
-    dispatch(formActions.changeStatus("LOADING"));
-    await ApiService.deleteComment(id);
-    dispatch(formActions.changeStatus("DONE"));
-    dispatch(changePage(1));
-  };
-  const modifyHandler = async (comment: TComment) => {
-    dispatch(formActions.needModify({comment}));
-  };
+  const deleteHandler = useCallback(
+    async (id: string) => {
+      dispatch(formActions.changeStatus("LOADING"));
+      await ApiService.deleteComment(id);
+      dispatch(formActions.changeStatus("DONE"));
+      dispatch(changePage(1));
+    },
+    [dispatch]
+  );
+  const modifyHandler = useCallback(
+    async (comment: TComment) => {
+      dispatch(formActions.needModify({ comment }));
+    },
+    [dispatch]
+  );
   return (
     <>
       {comments.map((comment: TComment) => (
@@ -59,20 +65,18 @@ function CommentList({ comments }: { comments: TComment[] }) {
           <img src={comment.profile_url} alt={comment.author} />
           {comment.author}
           <CreatedAt>{comment.createdAt}</CreatedAt>
-
           <Content>{comment.content}</Content>
-
           <Button>
-            <p onClick={()=>{modifyHandler(comment)}}>수정</p>
+            <p onClick={() => { modifyHandler(comment); }}
+            >
+              수정
+            </p>
             <p
-              onClick={() => {
-                deleteHandler(comment.id);
-              }}
+              onClick={() => { deleteHandler(comment.id); }}
             >
               삭제
             </p>
           </Button>
-
           <hr />
         </Comment>
       ))}

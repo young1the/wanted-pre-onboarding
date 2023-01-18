@@ -5,7 +5,9 @@ import form from "./form";
 
 const store = configureStore({
   reducer: {
-    page, comments, form,
+    page,
+    comments,
+    form,
   },
 });
 

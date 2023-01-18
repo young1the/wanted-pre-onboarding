@@ -24,7 +24,7 @@ const form = createSlice({
       state.apiStatus = action.payload.status;
     },
     needModify(state, action) {
-      state.comment = {...action.payload.comment};
+      state.comment = { ...action.payload.comment };
       state.formTodo = "PUT";
     },
     solved(state) {

@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { changePage } from "../util/redux/page/action";
@@ -40,8 +40,7 @@ function PageList({ pageIndex, pageAmount }: any) {
         key={i}
         active={pageIndex === i}
         onClick={() => {
-          if (pageIndex !== i)
-            onClickHandler(i);
+          if (pageIndex !== i) onClickHandler(i);
         }}
       >
         {i}

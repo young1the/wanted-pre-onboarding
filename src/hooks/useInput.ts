@@ -17,5 +17,5 @@ export default function useInput() {
     if (ref.current) ref.current.value = value;
   };
 
-  return { value: ref, onChange, clear, setValue };
+  return { ref, onChange, clear, setValue };
 }

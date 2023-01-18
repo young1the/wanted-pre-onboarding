@@ -1,13 +1,13 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 type TPageSliceState = {
-  totalAmount: number,
-  commentPerPage: number,
-  pageAmount: number,
-  pageIndex: number,
-}
+  totalAmount: number;
+  commentPerPage: number;
+  pageAmount: number;
+  pageIndex: number;
+};
 
-const initialState : TPageSliceState = {
+const initialState: TPageSliceState = {
   totalAmount: 0,
   commentPerPage: 5,
   pageAmount: 0,
@@ -15,7 +15,7 @@ const initialState : TPageSliceState = {
 };
 
 const page = createSlice({
-  name: 'page',
+  name: "page",
   initialState,
   reducers: {
     init(state, action) {
