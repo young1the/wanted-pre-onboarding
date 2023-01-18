@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { PARAMS } from "../../../constants/page";
 
 type TPageSliceState = {
   totalAmount: number;
@@ -9,7 +10,7 @@ type TPageSliceState = {
 
 const initialState: TPageSliceState = {
   totalAmount: 0,
-  commentPerPage: 5,
+  commentPerPage: PARAMS.COMMENT_PER_PAGE,
   pageAmount: 0,
   pageIndex: 1,
 };
