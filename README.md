@@ -36,6 +36,15 @@ gif 시연 내용 추가
 - axios: 1.2.2
 - typescript: 4.9.3
 - redux: TODO:VERSION
+
+## 🤔 실행방법
+
+```
+npm install // node modules 설치
+npm run api // json server 실행
+npm start // dev server 실행
+```
+
 ---
 
 ## ✅ 요구 사항 체크리스트
