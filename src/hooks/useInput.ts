@@ -1,14 +1,21 @@
-import { useState } from "react";
+import { useRef } from "react";
 
-export default function useInput(initialState = "") {
-  const [value, setValue] = useState(initialState);
-  const onChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setValue(e.target.value);
+type HTMLInputLikeElement = HTMLInputElement | HTMLTextAreaElement;
+
+export default function useInput() {
+  const ref = useRef<any>(null);
+
+  const onChange = (event: React.ChangeEvent<HTMLInputLikeElement>) => {
+    if (ref.current) ref.current.value = event.target.value;
   };
+
   const clear = () => {
-    setValue("");
+    if (ref.current) ref.current.value = "";
   };
-  return { value, onChange, clear };
+
+  const setValue = (value: string) => {
+    if (ref.current) ref.current.value = value;
+  };
+
+  return { value: ref, onChange, clear, setValue };
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import useForm from "../hooks/useForm";
+import useForm, { TUseFormInitialState } from "../hooks/useForm";
 
 const FormStyle = styled.div`
   & > form {
@@ -44,7 +44,7 @@ function Form() {
           type="text"
           name="profile_url"
           placeholder="https://picsum.photos/id/1/50/50"
-          value={imageValue}
+          ref={imageValue}
           onChange={imageOnChange}
           required
         />
@@ -53,14 +53,14 @@ function Form() {
           type="text"
           name="author"
           placeholder="작성자"
-          value={authorValue}
+          ref={authorValue}
           onChange={authorOnchange}
         />
         <br />
         <textarea
           name="content"
           placeholder="내용"
-          value={contentValue}
+          ref={contentValue}
           onChange={contentOnChange}
           required
         ></textarea>
@@ -69,12 +69,14 @@ function Form() {
           type="text"
           name="createdAt"
           placeholder="2020-05-30"
-          value={createAtValue}
+          ref={createAtValue}
           onChange={createAtOnChange}
           required
         />
         <br />
-        <button type="submit" onClick={formSubmitHandler}>등록</button>
+        <button type="submit" onClick={formSubmitHandler}>
+          등록
+        </button>
       </form>
     </FormStyle>
   );

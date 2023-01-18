@@ -7,13 +7,13 @@ type TFormTodo = "POST" | "PUT";
 type TFormSliceState = {
   apiStatus: TApiStatus;
   formTodo: TFormTodo;
-  comment: TComment | null;
+  comment: TComment | undefined;
 };
 
 const initialState: TFormSliceState = {
   apiStatus: "NONE",
   formTodo: "POST",
-  comment: null,
+  comment: undefined,
 };
 
 const form = createSlice({
@@ -22,6 +22,15 @@ const form = createSlice({
   reducers: {
     changeStatus(state, action) {
       state.apiStatus = action.payload.status;
+    },
+    needModify(state, action) {
+      state.comment = {...action.payload.comment};
+      state.formTodo = "PUT";
+    },
+    solved(state) {
+      state.apiStatus = "DONE";
+      state.formTodo = "POST";
+      state.comment = undefined;
     },
   },
 });
