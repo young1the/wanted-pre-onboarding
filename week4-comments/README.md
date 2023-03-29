@@ -25,7 +25,7 @@
 
 gif 시연 내용 추가
 
-![TODO:IMAGE NAME](TODO:IMAGE URL)
+![cover_comment](https://user-images.githubusercontent.com/86599495/228401119-20aab2c8-6efc-44b7-9371-a8cc6f03e168.gif)
 
 ---
 
